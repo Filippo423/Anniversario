@@ -1,7 +1,7 @@
 /* ===== Reset & Layout ===== */
 body {
   margin: 0;
-  background: #f1f1f1;
+  background-image: radial-gradient(white, rgb(255, 160, 143), rgb(250, 128, 114));
   display: flex;
   align-items: center;
   justify-content: center;
@@ -51,31 +51,23 @@ body {
 
   to {
     z-index: 10;
-    transform: scale(2) translate(0%, -25%);
+    transform: scale(2) translate(0%, 50%);
   }
 }
 
 .paper {
-  background: white;
+  background: none;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 18px;
   cursor: pointer;
   z-index: 2;
-  transform-origin: center center;
-  transition: transform 0.6s ease;
-}
-
-.paper-inner {
-  position: relative;
-  width: 100%; height: 100%;
-  transform-style: preserve-3d;
-  transition: transform 1s;
 }
 
 .paper-front,
 .paper-back {
+  background: rgb(240, 230, 200);
   position: absolute;
   width: 100%; height: 100%;
   backface-visibility: hidden;
@@ -83,15 +75,15 @@ body {
   align-items: center;
   justify-content: center;
   font-size: 18px;
+  transition: transform 0.5s ease;
 }
 
 .paper-front {
-  background: white;
+  background-color: rgb(240, 230, 200);
 }
 
 .paper-back {
-  background: url('ticket.png') no-repeat center/contain;
-  transform: rotateY(180deg);
+  transform: rotateY(-180deg);
 }
 
 /* ===== STATE-BASED TRANSFORMS ON .paper ===== */
@@ -100,15 +92,19 @@ body {
 }
 .paper.zoomed {
   animation: zoom-in-paper 0.5s forwards;
+  top: -100%;
+}
+.paper.flipped{
+  z-index: 10;
+  transform: scale(2);
 }
 
-.paper.flipped .paper-inner {
+.paper-front.flipped{
   transform: rotateY(180deg);
 }
 
-.paper.flipped {
-    z-index: 10;
-    transform: scale(2) translate(0%, -25%);
+.paper-back.flipped{
+  transform: rotateY(0deg);
 }
 
 /* ===== ENVELOPE CONTAINER STATES ===== */
@@ -123,9 +119,15 @@ body {
 }
 
 .envelope-container.zoomed {
-  transform: translateY(100%);
+  transform: translateY(500%);
   opacity: 0;
   transition: transform 0.5s ease, opacity 0.5s ease;
+  pointer-events: none;
+}
+
+.envelope-container.flipped {
+  top: 500%;
+  opacity: 0;
   pointer-events: none;
 }
 
@@ -149,6 +151,12 @@ body {
   width: 100%; height: 100%;
   transform: scaleX(-1);
   background: url('flap-left-right.png') no-repeat center/cover;
+}
+
+.ticket {
+  position: absolute;
+  width: 100%;
+  height: 100%;
 }
 
 /* ===== TOP FLAP OPEN ANIMATION ===== */

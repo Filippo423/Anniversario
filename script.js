@@ -24,6 +24,10 @@ paper.addEventListener('click', () => {
     case 'zoomed':
       nextState();
       break;
+
+    case 'flipped':
+      nextState();
+      break;
   }
 });
 
@@ -73,8 +77,17 @@ function transitionToZoomed(){
 
 function transitionToFlipped(){
   resetClasses();
-  envelope.classList.add('flipped')
-  paper.classList.add('flipped')
+  envelope.classList.add('flipped');
+  paper.classList.add('flipped');
+
+  paperChildren = paper.children;
+  for (const child of paperChildren){
+    child.classList.add('flipped');
+  }
+}
+
+function returnToZoomed(){
+  
 }
 
 function resetClasses(){
