@@ -2,6 +2,9 @@ const paper = document.getElementById('script-paper');
 const heart = document.getElementById('script-heart');
 const flapTop = document.getElementById('script-flap-top');
 const envelope = document.getElementById('script-envelope-container');
+const decorationLx = document.getElementById('script-decoration-lx');
+const decorationCx = document.getElementById('script-decoration-cx');
+const decorationRx = document.getElementById('script-decoration-rx');
 
 const states = ['closed', 'opened', 'zoomed', 'flipped', 'END'];
 let stateIndex = 0;
@@ -58,6 +61,9 @@ function nextState(){
 function transitionToOpened(){
   resetClasses();
 
+  decorationLx.classList.add('opened');
+  decorationCx.classList.add('opened');
+  decorationRx.classList.add('opened');
   flapTop.classList.add('opened');
 
   flapTop.addEventListener('animationend', (e) => {
@@ -91,6 +97,9 @@ function returnToZoomed(){
 }
 
 function resetClasses(){
+  decorationLx.classList.remove(...states);
+  decorationCx.classList.remove(...states);
+  decorationRx.classList.remove(...states);
   paper.classList.remove(...states);
   envelope.classList.remove(...states);
   flapTop.classList.remove(...states);

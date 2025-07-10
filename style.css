@@ -1,4 +1,3 @@
-/* ===== Reset & Layout ===== */
 body {
   margin: 0;
   background-image: radial-gradient(white, rgb(255, 160, 143), rgb(250, 128, 114));
@@ -11,15 +10,31 @@ body {
   box-sizing: border-box;
 }
 
-/* ===== WRAPPER ===== */
+:root {
+  --breath-distance: 5%;
+  --breath-duration: 4s; 
+}
+
+@keyframes breath {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(calc(-1 * var(--breath-distance)));
+  }
+}
+
+/*   WRAPPER   */
 .scene-wrapper {
   position: relative;
   width: 450px;
   height: 300px;
   margin: auto;
+  animation: breath var(--breath-duration) ease-in-out infinite;
+  will-change: transform;
 }
 
-/* ===== ENVELOPE & PAPER BASE ===== */
+/*   ENVELOPE-CONTAINER & PAPER   */
 .envelope-container,
 .paper {
   position: absolute;
@@ -36,7 +51,7 @@ body {
   z-index: 1;
 }
 
-/* ===== PAPER & FLIP LOGIC ===== */
+/*   PAPER   */
 @keyframes slide-out-paper {
   from {transform: translateY(0);}
 
@@ -86,7 +101,7 @@ body {
   transform: rotateY(-180deg);
 }
 
-/* ===== STATE-BASED TRANSFORMS ON .paper ===== */
+/*   PAPER states   */
 .paper.opened {
   animation: slide-out-paper 1s forwards;
 }
@@ -107,15 +122,10 @@ body {
   transform: rotateY(0deg);
 }
 
-/* ===== ENVELOPE CONTAINER STATES ===== */
+/*   ENVELOPE CONTAINER states   */
 .envelope-container.closed {
-  transform: translateY(0);
   opacity: 1;
   pointer-events: auto;
-}
-
-.envelope-container.opened {
-  /* resta fissa mentre esce la carta */
 }
 
 .envelope-container.zoomed {
@@ -131,7 +141,7 @@ body {
   pointer-events: none;
 }
 
-/* ===== FLAPS ===== */
+/*   FLAPS   */
 .flap {
   position: absolute;
   z-index: 3;
@@ -153,13 +163,6 @@ body {
   background: url('flap-left-right.png') no-repeat center/cover;
 }
 
-.ticket {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-}
-
-/* ===== TOP FLAP OPEN ANIMATION ===== */
 @keyframes open-flap-top {
   from {
     z-index: 4;
@@ -178,11 +181,15 @@ body {
   cursor: pointer;
   background: url('flap-top.png') no-repeat center/cover;
 }
+
+/*   FLAP states   */
 .flap-top.opened {
   animation: open-flap-top 0.8s forwards;
 }
 
-/* ===== HEART ===== */
+
+/*   HEART   */
+
 .heart {
   position: absolute;
   background: url('heart.png');
@@ -193,4 +200,70 @@ body {
   background-position: center center;
   background-size: 20%;
   z-index: 5;
+}
+
+@keyframes explode-decoration-lx {
+  0% {
+    transform: translate(0%, 0%) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-25%, -50%) scale(0.8);
+    opacity: 0;
+  }
+}
+
+@keyframes explode-decoration-cx {
+  0% {
+    transform: translate(-0%, 0%) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(0%, -50%) scale(0.8);
+    opacity: 0;
+  }
+}
+
+@keyframes explode-decoration-rx {
+  0% {
+    transform: translate(0%, 0%) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(25%, -50%) scale(0.8);
+    opacity: 0;
+  }
+}
+
+.decoration-lx,
+.decoration-cx,
+.decoration-rx{
+  position: absolute;
+  background: url('decoration.png');
+  background-size: contain;
+  bottom: 0; left: 0;
+  width: 100%;  height: 100%;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 7.5%;
+  z-index: 3;
+}
+
+.decoration-cx.opened {
+  animation: explode-decoration-cx 1s ease-out forwards;
+}
+
+.decoration-lx.opened {
+  animation: explode-decoration-lx 1s ease-out forwards;
+}
+
+.decoration-rx.opened {
+  animation: explode-decoration-rx 1s ease-out forwards;
+}
+
+/*   TICKET   */
+.ticket {
+  position: absolute;
+  width: 100%;
+  height: 100%;
 }
