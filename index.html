@@ -1,34 +1,53 @@
 <!DOCTYPE html>
 <html lang="it">
+
 <head>
   <meta charset="UTF-8">
   <title>Lettera Interattiva</title>
   <link rel="stylesheet" href="style.css">
 </head>
-<body>
-  <div class="scene-wrapper">
-  <!-- foglio -->
-  <div class="paper" id="script-paper">
-    <div class="paper-front" id="script-paper-front">Fronte</div>
-      <div class="paper-back" id="script-paper-back">
-        <img src="ticket.png" class="ticket">
-      </div>
-  </div>
 
-  <!-- busta -->
-  <div class="envelope-container" id="script-envelope-container">
-    <div class="envelope-back"></div>
-    <div class="flap flap-bottom"></div>
-    <div class="flap flap-right"></div>
-    <div class="flap flap-left"></div>
-    <div class="flap flap-top" id="script-flap-top"></div>
-    <div class="decoration-lx" id="script-decoration-lx"></div>
-    <div class="decoration-cx" id="script-decoration-cx"></div>
-    <div class="decoration-rx" id="script-decoration-rx"></div>
-    <div class="heart" id="script-heart"></div>
+<body>
+  <div class="wallpaper" id="script-wallpaper">
+    <div class="scene-wrapper" id="script-scene-wrapper">
+    <!-- foglio -->
+    <div class="paper" id="script-paper">
+      <div class="paper-front" id="script-paper-front">
+        <p class="message">
+          <em>Tesoro mio,
+          <br>
+          Ci siamo conosciuti chiaccherando di musica e al nostro primo appuntamento ho suonato per te una canzone che da quel momento e` diventata importantissima all'interno della nostra relazione.
+          <br>
+          <br>
+          Da quel momento ad oggi abbiamo vissuto tante altre esperienze legate alla musica che hanno dato vita a ricordi indelebili per entrambi.
+          <br>
+          <br>
+          Ed e` proprio col desiderio di crearne di nuovi che ti faccio questo regalo. 
+          </em>
+        </p>
+        
+      </div>
+      <div class="paper-back" id="script-paper-back">
+        <img class="ticket" src="paper-back.jpg">
+      </div>
+    </div>
+
+    <!-- busta -->
+    <div class="envelope-container" id="script-envelope-container">
+      <div class="envelope-back"></div>
+      <div class="flap flap-bottom"></div>
+      <div class="flap flap-right"></div>
+      <div class="flap flap-left"></div>
+      <div class="flap flap-top" id="script-flap-top"></div>
+      <div class="decoration-lx" id="script-decoration-lx"></div>
+      <div class="decoration-cx" id="script-decoration-cx"></div>
+      <div class="decoration-rx" id="script-decoration-rx"></div>
+      <div class="heart" id="script-heart"></div>
+    </div>
   </div>
-</div>
+  </div>
 
   <script src="script.js" defer></script>
 </body>
+
 </html>
